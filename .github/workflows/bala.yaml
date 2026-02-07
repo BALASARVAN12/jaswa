@@ -1,28 +1,27 @@
-name: Run Python Script
+name: Add Two Numbers
 
 on:
-  push:
-    branches: [ "master" ]
-  workflow_dispatch:   # allows manual run from GitHub UI
+workflow_dispatch:
+inputs:
+num1:
+description: "Enter first number"
+required: true
+num2:
+description: "Enter second number"
+required: true
 
 jobs:
-  run-script:
-    runs-on: ubuntu-latest
+run-python:
+runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+steps:
+  - name: Checkout code
+    uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
+  - name: Setup Python
+    uses: actions/setup-python@v5
+    with:
+      python-version: "3.11"
 
-      - name: Install dependencies
-        run: |
-          if [ -f requirements.txt ]; then
-            pip install -r requirements.txt
-          fi
-
-      - name: Run Python script
-        run: python hello.py
+  - name: Run Script
+    run: python add.py ${{ github.event.inputs.num1 }} ${{ github.event.inputs.num2 }}
