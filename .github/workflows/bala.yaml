@@ -24,5 +24,5 @@ jobs:
           python-version: '3.11'
 
       - name: Run Script
-        run: python add.py ${{ github.event.inputs.num1 }} ${{ github.event.inputs.num2 }}
+        run: python hello.py ${{ github.event.inputs.num1 }} ${{ github.event.inputs.num2 }}
 
