@@ -1,29 +1,28 @@
 name: Add Two Numbers
 
 on:
-workflow_dispatch:
-inputs:
-num1:
-description: Enter first number
-required: true
-type: string
-num2:
-description: Enter second number
-required: true
-type: string
+  workflow_dispatch:
+    inputs:
+      num1:
+        description: Enter first number
+        required: true
+ 
+      num2:
+        description: Enter second number  
+        required: true
 
 jobs:
-run-python:
-runs-on: ubuntu-latest
-steps:
-- name: Checkout code
-uses: actions/checkout@v4
+  run-python:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  - name: Setup Python
-    uses: actions/setup-python@v5
-    with:
-      python-version: '3.11'
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-  - name: Run Script
-    run: python add.py ${{ github.event.inputs.num1 }} ${{ github.event.inputs.num2 }}
+      - name: Run Script
+        run: python add.py ${{ github.event.inputs.num1 }} ${{ github.event.inputs.num2 }}
 
