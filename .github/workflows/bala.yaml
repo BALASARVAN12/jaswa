@@ -24,4 +24,4 @@ jobs:
     - name: Run validation
       env:
         IP_INPUT: ${{ github.event.inputs.ip_address }}
-        run: python validate_ip.py
+      run: python validate_ip.py
