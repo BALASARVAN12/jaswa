@@ -6,7 +6,7 @@ on:
       ip_address:
         description: "Enter Private IP or Subnet"
         required: true
-        default: "192.168.1.1"
+        default: "Enter the ip adddress"
 
 jobs:
   validate:
