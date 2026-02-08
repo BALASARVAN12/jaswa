@@ -1,28 +1,27 @@
-name: Add Two Numbers
+name: Validate Private IP
 
 on:
   workflow_dispatch:
     inputs:
-      num1:
-        description: Enter first number
+      ip_address:
+        description: "Enter Private IP or Subnet"
         required: true
- 
-      num2:
-        description: Enter second number  
-        required: true
+        default: "192.168.1.1"
 
 jobs:
-  run-python:
+  validate:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout repo
+      uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
 
-      - name: Run Script
-        run: python hello.py ${{ github.event.inputs.num1 }} ${{ github.event.inputs.num2 }}
-
+    - name: Run validation
+      env:
+        IP_INPUT: ${{ github.event.inputs.ip_address }}
+        run: python validate_ip.py
