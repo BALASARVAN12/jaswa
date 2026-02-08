@@ -1,0 +1,27 @@
+name: Validate Private IP
+
+on:
+  workflow_dispatch:
+    inputs:
+      ip_address:
+        description: "Enter Private IP or Subnet"
+        required: true
+        default: "192.168.1.1"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    - name: Run validation
+      env:
+        IP_INPUT: ${{ github.event.inputs.ip_address }}
+      run: python hello.py
